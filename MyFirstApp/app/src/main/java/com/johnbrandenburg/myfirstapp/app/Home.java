@@ -8,10 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 
 public class Home extends ActionBarActivity {
 
+    //Global Variable Declarations
     Button calcButton;
     TextView resultsView;
     EditText totalAdults;
@@ -51,19 +55,58 @@ public class Home extends ActionBarActivity {
                 int totalPresent = finalAdults + finalChildren + finalTeens;
 
                 //Display the results of people enter into the counter
-                //resultsView.setText("There are " + finalAdults + " adults, " + finalTeens + " teens, and " + finalChildren + " children" + " at church today.");
-                //resultsView.setText("There are " + totalPresent + " people in church today.");
+                resultsView.setText("There are " + totalPresent + " people in church today.");
 
                 //If statement to determine if you had a good day in church
-                if (totalPresent >= 100)
-                {
+                if (totalPresent >= 100) {
                     goodDay = true;
                     //Add alert to tell user that they had a great day
-                    resultsView.setText("You had a great day!");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(
+                            Home.this);
 
+                    // Set Alert Dialog Title
+                    builder.setTitle("Congratulations!");
+
+                    // Set Alert Dialog Message
+                    builder.setMessage("You had a GREAT day!")
+
+                       .setNeutralButton("OK",
+                           new DialogInterface.OnClickListener() {
+                               public void onClick(DialogInterface dialog, int arg0) {
+                                   Toast.makeText(Home.this,"You clicked on OK", Toast.LENGTH_SHORT).show();
+                               }
+                           }
+                       );
+
+                    // Create the Alert Dialog
+                       AlertDialog alertdialog = builder.create();
+
+                    // Show Alert Dialog
+                       alertdialog.show();
                 }else{
                     //Add alert to tell user that they had a good day
-                    resultsView.setText("You had a good day!");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(
+                            Home.this);
+
+                    // Set Alert Dialog Title
+                    builder.setTitle("Congratulations!");
+
+                    // Set Alert Dialog Message
+                    builder.setMessage("You had a GOOD day!")
+
+                            .setNeutralButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int arg0) {
+                                            Toast.makeText(Home.this,"You clicked on OK", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                            );
+
+                    // Create the Alert Dialog
+                    AlertDialog alertdialog = builder.create();
+
+                    // Show Alert Dialog
+                    alertdialog.show();
                 }
             }
         });
