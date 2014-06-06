@@ -36,7 +36,7 @@ public class Home extends ActionBarActivity {
         totalAdults =   (EditText)  findViewById(R.id.totalAdults);
         totalTeens  =   (EditText)  findViewById(R.id.totalTeens);
         totalChildren = (EditText)  findViewById(R.id.totalChildren);
-        goodDay = false;
+        goodDay     =   false;
 
         smileyImage =   (ImageView) findViewById(R.id.smileyImage);
 
@@ -61,7 +61,15 @@ public class Home extends ActionBarActivity {
                 //Display the results of people enter into the counter
                 resultsView.setText("There are " + totalPresent + " people in church today.");
 
-                //If statement to determine if you had a good day in church
+                //While loop that sets image view based on how many people are present
+                int i = 0;
+                while (i <= totalPresent)
+                {
+                    i++;
+                    smileyImage.setImageResource(R.drawable.sadface);
+                }
+
+                //Function to determine if you had a good day in church
                 if (totalPresent >= 100) {
 
                     goodDay = true;
@@ -88,7 +96,6 @@ public class Home extends ActionBarActivity {
 
                     // Show Alert Dialog
                        alertdialog.show();
-
                     smileyImage.setImageResource(R.drawable.smileyface);
                 }else{
                     //Add alert to tell user that they had a good day
@@ -114,7 +121,7 @@ public class Home extends ActionBarActivity {
 
                     // Show Alert Dialog
                     alertdialog.show();
-                    smileyImage.setImageResource(R.drawable.sadface);
+                    smileyImage.setImageResource(R.drawable.smileyface);
                 }
             }
         });
