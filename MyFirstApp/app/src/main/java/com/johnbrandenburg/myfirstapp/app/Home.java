@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.AlertDialog;
@@ -22,6 +23,7 @@ public class Home extends ActionBarActivity {
     EditText totalTeens;
     EditText totalChildren;
     Boolean  goodDay;
+    ImageView smileyImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,8 @@ public class Home extends ActionBarActivity {
         totalTeens  =   (EditText)  findViewById(R.id.totalTeens);
         totalChildren = (EditText)  findViewById(R.id.totalChildren);
         goodDay = false;
+
+        smileyImage =   (ImageView) findViewById(R.id.smileyImage);
 
         //Add functions to run when the button is pressed
         calcButton.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +63,7 @@ public class Home extends ActionBarActivity {
 
                 //If statement to determine if you had a good day in church
                 if (totalPresent >= 100) {
+
                     goodDay = true;
                     //Add alert to tell user that they had a great day
                     AlertDialog.Builder builder = new AlertDialog.Builder(
@@ -71,11 +76,11 @@ public class Home extends ActionBarActivity {
                     builder.setMessage("You had a GREAT day!")
 
                        .setNeutralButton("OK",
-                           new DialogInterface.OnClickListener() {
-                               public void onClick(DialogInterface dialog, int arg0) {
-                                   Toast.makeText(Home.this,"You clicked on OK", Toast.LENGTH_SHORT).show();
+                               new DialogInterface.OnClickListener() {
+                                   public void onClick(DialogInterface dialog, int arg0) {
+                                       Toast.makeText(Home.this, "GREAT JOB!!!", Toast.LENGTH_SHORT).show();
+                                   }
                                }
-                           }
                        );
 
                     // Create the Alert Dialog
@@ -83,6 +88,8 @@ public class Home extends ActionBarActivity {
 
                     // Show Alert Dialog
                        alertdialog.show();
+
+                    smileyImage.setImageResource(R.drawable.smileyface);
                 }else{
                     //Add alert to tell user that they had a good day
                     AlertDialog.Builder builder = new AlertDialog.Builder(
@@ -97,7 +104,7 @@ public class Home extends ActionBarActivity {
                             .setNeutralButton("OK",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int arg0) {
-                                            Toast.makeText(Home.this,"You clicked on OK", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Home.this,"GOOD JOB!!!", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                             );
@@ -107,10 +114,10 @@ public class Home extends ActionBarActivity {
 
                     // Show Alert Dialog
                     alertdialog.show();
+                    smileyImage.setImageResource(R.drawable.sadface);
                 }
             }
         });
-
     }
 
 
