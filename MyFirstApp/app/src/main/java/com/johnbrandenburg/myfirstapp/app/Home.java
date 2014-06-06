@@ -17,6 +17,7 @@ public class Home extends ActionBarActivity {
     EditText totalAdults;
     EditText totalTeens;
     EditText totalChildren;
+    Boolean  goodDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +31,7 @@ public class Home extends ActionBarActivity {
         totalTeens  =   (EditText)  findViewById(R.id.totalTeens);
         totalChildren = (EditText)  findViewById(R.id.totalChildren);
 
-
-
+        //Add functions to run when the button is pressed
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +54,18 @@ public class Home extends ActionBarActivity {
                 resultsView.setText("There are " + totalPresent + " people in church today.");
 
                 //If statement to determine if you had a good day in church
+                if (totalPresent >= 100)
+                {
+                    goodDay = true;
+                    if (goodDay = true)
+                    {
+                        //Add alert to tell user that they had a great day
+
+                    }else {
+                        //Add alert to tell user that they had a good day
+
+                    }
+                }
             }
         });
 
