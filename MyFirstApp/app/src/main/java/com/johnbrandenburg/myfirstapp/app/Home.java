@@ -30,6 +30,7 @@ public class Home extends ActionBarActivity {
         totalAdults =   (EditText)  findViewById(R.id.totalAdults);
         totalTeens  =   (EditText)  findViewById(R.id.totalTeens);
         totalChildren = (EditText)  findViewById(R.id.totalChildren);
+        goodDay = false;
 
         //Add functions to run when the button is pressed
         calcButton.setOnClickListener(new View.OnClickListener() {
@@ -51,20 +52,18 @@ public class Home extends ActionBarActivity {
 
                 //Display the results of people enter into the counter
                 //resultsView.setText("There are " + finalAdults + " adults, " + finalTeens + " teens, and " + finalChildren + " children" + " at church today.");
-                resultsView.setText("There are " + totalPresent + " people in church today.");
+                //resultsView.setText("There are " + totalPresent + " people in church today.");
 
                 //If statement to determine if you had a good day in church
                 if (totalPresent >= 100)
                 {
                     goodDay = true;
-                    if (goodDay = true)
-                    {
-                        //Add alert to tell user that they had a great day
+                    //Add alert to tell user that they had a great day
+                    resultsView.setText("You had a great day!");
 
-                    }else {
-                        //Add alert to tell user that they had a good day
-
-                    }
+                }else{
+                    //Add alert to tell user that they had a good day
+                    resultsView.setText("You had a good day!");
                 }
             }
         });
