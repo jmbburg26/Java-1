@@ -4,27 +4,39 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.widget.TabHost;
 
 
 public class Home extends ActionBarActivity {
 
-    //Global Variable Declarations
-
+EditText contactName, contactNumber, contactEmail, contactAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_layouts);
 
+        contactName = (EditText) findViewById(R.id.contactName);
+        contactEmail = (EditText) findViewById(R.id.contactEmail);
+        contactNumber = (EditText) findViewById(R.id.contactNumber);
+        contactAddress = (EditText) findViewById(R.id.contactAddress);
 
+        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        Button contactBtn = (Button) findViewById(R.id.addContact);
+
+        tabHost.setup();
+
+        TabHost.TabSpec tabSpec = tabHost.newTabSpec("tab_Create");
+        tabSpec.setContent(R.id.tab_Create);
+        tabSpec.setIndicator("Create");
+        tabHost.addTab(tabSpec);
+
+        tabSpec = tabHost.newTabSpec("tab_List");
+        tabSpec.setContent(R.id.tab_List);
+        tabSpec.setIndicator("List");
+        tabHost.addTab(tabSpec);
     }
 
 
