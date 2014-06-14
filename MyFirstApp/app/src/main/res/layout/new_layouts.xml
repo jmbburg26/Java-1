@@ -30,6 +30,12 @@
                 android:layout_height="fill_parent">
 
                 <LinearLayout
+                    android:id="@+id/tab_List"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"></LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/tab_Create"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
@@ -86,16 +92,23 @@
                         android:layout_gravity="center_horizontal" />
                     </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/tab_List"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:orientation="vertical"></LinearLayout>
-
             </FrameLayout>
         </LinearLayout>
     </TabHost>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/listText"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:layout_gravity="center_horizontal" />
 
 
 </LinearLayout>

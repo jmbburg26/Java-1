@@ -4,9 +4,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 
 public class Home extends ActionBarActivity {
@@ -23,20 +25,31 @@ EditText contactName, contactNumber, contactEmail, contactAddress;
         contactNumber = (EditText) findViewById(R.id.contactNumber);
         contactAddress = (EditText) findViewById(R.id.contactAddress);
 
+        //Create the Tab Host to control that tab view
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
-        Button contactBtn = (Button) findViewById(R.id.addContact);
+
 
         tabHost.setup();
 
+        //Set up the tab to create a contact
         TabHost.TabSpec tabSpec = tabHost.newTabSpec("tab_Create");
         tabSpec.setContent(R.id.tab_Create);
         tabSpec.setIndicator("Create");
         tabHost.addTab(tabSpec);
 
+        //Set up the tab to view all contacts
         tabSpec = tabHost.newTabSpec("tab_List");
         tabSpec.setContent(R.id.tab_List);
         tabSpec.setIndicator("List");
         tabHost.addTab(tabSpec);
+
+        Button addContactBtn = (Button) findViewById(R.id.addContact);
+        addContactBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Contact added!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

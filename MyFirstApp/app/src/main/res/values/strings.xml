@@ -12,8 +12,6 @@
     <string name="numberHint">Phone</string>
     <string name="emailHint">Email</string>
     <string name="addressHint">Address</string>
-
-    <string name="tabAdd">Add Contact</string>
-    <string name="tabList">Contact List</string>
+    <string name="listText">All Contacts</string>
 
 </resources>
