@@ -4,7 +4,7 @@
     <string name="app_name">My Contacts</string>
     <string name="hello_world">Welcome to my app!</string>
     <string name="action_settings">Settings</string>
-    <string name="contactText">Enter Contact Information</string>
+    <string name="contactText">Contact Information</string>
     <string name="conButtonText">Add Contact</string>
 
     //Text for the hints in the add contact screen

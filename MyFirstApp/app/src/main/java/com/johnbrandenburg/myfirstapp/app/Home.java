@@ -1,19 +1,30 @@
 package com.johnbrandenburg.myfirstapp.app;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Home extends ActionBarActivity {
 
-EditText contactName, contactNumber, contactEmail, contactAddress;
+    EditText contactName, contactNumber, contactEmail, contactAddress;
+    List<Contact> Contacts = new ArrayList<Contact>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +54,66 @@ EditText contactName, contactNumber, contactEmail, contactAddress;
         tabSpec.setIndicator("List");
         tabHost.addTab(tabSpec);
 
-        Button addContactBtn = (Button) findViewById(R.id.addContact);
+        final Button addContactBtn = (Button) findViewById(R.id.addContact);
         addContactBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Add toast message to show contact was saved
                 Toast.makeText(getApplicationContext(), "Contact added!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        contactName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+                //Only enable the add contact button when there is text in the Name field
+                addContactBtn.setEnabled(!contactName.getText().toString().trim().isEmpty());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void addContact(String name, String phone, String email, String address){
+        Contacts.add(new Contact(name, phone, email, address));
+    }
+
+    private class ContactListAdapter extends ArrayAdapter<Contact>{
+        public ContactListAdapter(){
+            super (Home.this, R.layout.listview_contact, Contacts);
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup parent){
+            if (view == null)
+                view = getLayoutInflater().inflate(R.layout.listview_contact, parent, false);
+
+            //Get all the information about the contact
+            Contact currentContact = Contacts.get(position);
+
+            TextView name = (TextView) view.findViewById(R.id.contactName);
+            name.setText(currentContact.getName());
+
+            TextView phone = (TextView) view.findViewById(R.id.contactNumber);
+            phone.setText(currentContact.getPhone());
+
+            TextView email = (TextView) view.findViewById(R.id.contactEmail);
+            email.setText(currentContact.getEmail());
+
+            TextView address = (TextView) view.findViewById(R.id.contactAddress);
+            address.setText(currentContact.getAddress());
+
+            return view;
+        }
     }
 
 
