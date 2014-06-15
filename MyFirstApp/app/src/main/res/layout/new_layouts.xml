@@ -107,7 +107,7 @@
                         android:id="@+id/addContact"
                         android:layout_gravity="center_horizontal"
                         android:enabled="false" />
-                    </LinearLayout>
+                </LinearLayout>
 
             </FrameLayout>
         </LinearLayout>

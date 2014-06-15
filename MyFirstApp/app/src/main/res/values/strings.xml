@@ -14,4 +14,10 @@
     <string name="addressHint">Address</string>
     <string name="listText">All Contacts</string>
 
+    <string-array name="contact_type">
+        <item >Friend</item>
+        <item >Family</item>
+        <item >Work</item>
+    </string-array>
+
 </resources>

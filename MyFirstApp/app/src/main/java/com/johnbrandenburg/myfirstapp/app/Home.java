@@ -1,7 +1,5 @@
 package com.johnbrandenburg.myfirstapp.app;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +24,7 @@ public class Home extends ActionBarActivity {
 
     EditText contactName, contactNumber, contactEmail, contactAddress;
     List<Contact> Contacts = new ArrayList<Contact>();
+    ListView contactList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class Home extends ActionBarActivity {
         contactEmail = (EditText) findViewById(R.id.contactEmail);
         contactNumber = (EditText) findViewById(R.id.contactNumber);
         contactAddress = (EditText) findViewById(R.id.contactAddress);
+        contactList = (ListView) findViewById(R.id.listView);
 
         //Create the Tab Host to control that tab view
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
@@ -58,8 +59,10 @@ public class Home extends ActionBarActivity {
         addContactBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                addContact(contactName.getText().toString(), contactNumber.getText().toString(), contactEmail.getText().toString(), contactAddress.getText().toString());
+                populateList();
                 //Add toast message to show contact was saved
-                Toast.makeText(getApplicationContext(), "Contact added!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), contactName.getText().toString() + " has been added to your Contacts!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -71,7 +74,6 @@ public class Home extends ActionBarActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
                 //Only enable the add contact button when there is text in the Name field
                 addContactBtn.setEnabled(!contactName.getText().toString().trim().isEmpty());
             }
@@ -83,6 +85,13 @@ public class Home extends ActionBarActivity {
         });
     }
 
+    //Populate the list view with contacts
+    private void populateList(){
+        ArrayAdapter<Contact> adapter = new ContactListAdapter();
+        contactList.setAdapter(adapter);
+    }
+
+    //Add contact
     private void addContact(String name, String phone, String email, String address){
         Contacts.add(new Contact(name, phone, email, address));
     }
@@ -100,16 +109,16 @@ public class Home extends ActionBarActivity {
             //Get all the information about the contact
             Contact currentContact = Contacts.get(position);
 
-            TextView name = (TextView) view.findViewById(R.id.contactName);
+            TextView name = (TextView) view.findViewById(R.id.textName);
             name.setText(currentContact.getName());
 
-            TextView phone = (TextView) view.findViewById(R.id.contactNumber);
+            TextView phone = (TextView) view.findViewById(R.id.textNumber);
             phone.setText(currentContact.getPhone());
 
-            TextView email = (TextView) view.findViewById(R.id.contactEmail);
+            TextView email = (TextView) view.findViewById(R.id.textEmail);
             email.setText(currentContact.getEmail());
 
-            TextView address = (TextView) view.findViewById(R.id.contactAddress);
+            TextView address = (TextView) view.findViewById(R.id.textAddress);
             address.setText(currentContact.getAddress());
 
             return view;
