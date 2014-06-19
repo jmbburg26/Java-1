@@ -1,5 +1,6 @@
 package com.johnbrandenburg.myfirstapp.app;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -30,6 +31,7 @@ public class Home extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_layouts);
+
 
         contactName = (EditText) findViewById(R.id.contactName);
         contactEmail = (EditText) findViewById(R.id.contactEmail);
@@ -143,5 +145,11 @@ public class Home extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public Boolean connectionStatus (Context context){
+        Boolean conn = false;
+
+        return null;
     }
 }
