@@ -1,8 +1,9 @@
 package com.johnbrandenburg.myfirstapp.app;
 
-import android.content.Context;
-import android.support.v7.app.ActionBarActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ import java.util.List;
 public class Home extends ActionBarActivity {
 
     EditText contactName, contactNumber, contactEmail, contactAddress;
+    ImageView contactImage;
     List<Contact> Contacts = new ArrayList<Contact>();
     ListView contactList;
 
@@ -32,12 +35,12 @@ public class Home extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_layouts);
 
-
         contactName = (EditText) findViewById(R.id.contactName);
         contactEmail = (EditText) findViewById(R.id.contactEmail);
         contactNumber = (EditText) findViewById(R.id.contactNumber);
         contactAddress = (EditText) findViewById(R.id.contactAddress);
         contactList = (ListView) findViewById(R.id.listView);
+        contactImage = (ImageView) findViewById(R.id.imgViewContactImage);
 
         //Create the Tab Host to control that tab view
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
@@ -56,6 +59,7 @@ public class Home extends ActionBarActivity {
         tabSpec.setContent(R.id.tab_List);
         tabSpec.setIndicator("List");
         tabHost.addTab(tabSpec);
+
 
         final Button addContactBtn = (Button) findViewById(R.id.addContact);
         addContactBtn.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +89,23 @@ public class Home extends ActionBarActivity {
 
             }
         });
+
+        contactImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Contact Image"), 1);
+            }
+        });
+    }
+
+    public void onActivityResult(int reqCode, int resCode, Intent data){
+        if (resCode == RESULT_OK){
+            if (reqCode == 1)
+                contactImage.setImageURI(data.getData());
+        }
     }
 
     //Populate the list view with contacts
@@ -145,11 +166,5 @@ public class Home extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public Boolean connectionStatus (Context context){
-        Boolean conn = false;
-
-        return null;
     }
 }

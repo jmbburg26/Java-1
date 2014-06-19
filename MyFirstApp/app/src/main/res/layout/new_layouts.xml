@@ -7,7 +7,6 @@
     android:layout_margin="30dp"
     android:gravity="center_horizontal">
 
-
     <TabHost
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,28 +29,6 @@
                 android:layout_height="fill_parent">
 
                 <LinearLayout
-                    android:id="@+id/tab_List"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/listText"
-                        android:id="@+id/textView2"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp" />
-
-                    <ListView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/listView"
-                        android:layout_gravity="center_horizontal" />
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/tab_Create"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
@@ -63,6 +40,14 @@
                         android:text="@string/contactText"
                         android:id="@+id/con"
                         android:layout_gravity="center_horizontal" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:id="@+id/imgViewContactImage"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/no_user_image" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -107,6 +92,28 @@
                         android:id="@+id/addContact"
                         android:layout_gravity="center_horizontal"
                         android:enabled="false" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tab_List"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/listText"
+                        android:id="@+id/textView2"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp" />
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/listView"
+                        android:layout_gravity="center_horizontal" />
+
                 </LinearLayout>
 
             </FrameLayout>

@@ -7,6 +7,8 @@
     <string name="contactText">Contact Information</string>
     <string name="conButtonText">Add Contact</string>
 
+    <string name="check_web">Get Network Status</string>
+
     //Text for the hints in the add contact screen
     <string name="nameHint">Name</string>
     <string name="numberHint">Phone</string>
