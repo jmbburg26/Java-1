@@ -2,6 +2,7 @@ package com.johnbrandenburg.myfirstapp.app;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
@@ -29,6 +30,7 @@ public class Home extends ActionBarActivity {
     ImageView contactImage;
     List<Contact> Contacts = new ArrayList<Contact>();
     ListView contactList;
+    Uri imageUri = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +67,7 @@ public class Home extends ActionBarActivity {
         addContactBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addContact(contactName.getText().toString(), contactNumber.getText().toString(), contactEmail.getText().toString(), contactAddress.getText().toString());
+                Contacts.add(new Contact(0, contactName.getText().toString(), contactNumber.getText().toString(), contactEmail.getText().toString(), contactAddress.getText().toString(), imageUri));
                 populateList();
                 //Add toast message to show contact was saved
                 Toast.makeText(getApplicationContext(), contactName.getText().toString() + " has been added to your Contacts!", Toast.LENGTH_SHORT).show();
@@ -101,9 +103,11 @@ public class Home extends ActionBarActivity {
         });
     }
 
+    //Set contact image to the one selected by the user
     public void onActivityResult(int reqCode, int resCode, Intent data){
         if (resCode == RESULT_OK){
             if (reqCode == 1)
+                imageUri = data.getData();
                 contactImage.setImageURI(data.getData());
         }
     }
@@ -112,11 +116,6 @@ public class Home extends ActionBarActivity {
     private void populateList(){
         ArrayAdapter<Contact> adapter = new ContactListAdapter();
         contactList.setAdapter(adapter);
-    }
-
-    //Add contact
-    private void addContact(String name, String phone, String email, String address){
-        Contacts.add(new Contact(name, phone, email, address));
     }
 
     private class ContactListAdapter extends ArrayAdapter<Contact>{
@@ -143,6 +142,9 @@ public class Home extends ActionBarActivity {
 
             TextView address = (TextView) view.findViewById(R.id.textAddress);
             address.setText(currentContact.getAddress());
+
+            ImageView ivContactImage = (ImageView) view.findViewById(R.id.ivContactImage);
+            ivContactImage.setImageURI(currentContact.getImageURI());
 
             return view;
         }
