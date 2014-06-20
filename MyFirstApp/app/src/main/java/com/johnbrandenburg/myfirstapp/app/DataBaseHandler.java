@@ -16,7 +16,7 @@ import java.util.List;
 public class DataBaseHandler  extends SQLiteOpenHelper{
     private static final int DATABASE_VERSION = 1;
 
-    private static final String DATABASE_NAME = " contactManager",
+    private static final String DATABASE_NAME = "contacts",
     TABLE_CONTACTS = "contacts",
     KEY_ID = "id",
     KEY_NAME = "name",
@@ -78,8 +78,11 @@ public class DataBaseHandler  extends SQLiteOpenHelper{
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_CONTACTS, null);
         cursor.close();
 
+        int count = cursor.getCount();
+        cursor.close();
         db.close();
-        return cursor.getCount();
+
+        return count;
     }
 
     public int updateContact(Contact contact){

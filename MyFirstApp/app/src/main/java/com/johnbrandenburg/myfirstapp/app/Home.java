@@ -20,6 +20,8 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class Home extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_layouts);
+
 
         contactName = (EditText) findViewById(R.id.contactName);
         contactEmail = (EditText) findViewById(R.id.contactEmail);
@@ -95,7 +98,7 @@ public class Home extends ActionBarActivity {
         contactImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent = new Intent();
+                Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Contact Image"), 1);
@@ -108,7 +111,7 @@ public class Home extends ActionBarActivity {
         if (resCode == RESULT_OK){
             if (reqCode == 1)
                 imageUri = data.getData();
-                contactImage.setImageURI(data.getData());
+            contactImage.setImageURI(data.getData());
         }
     }
 
