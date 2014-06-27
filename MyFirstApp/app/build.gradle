@@ -25,4 +25,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:19.+'
     compile 'com.android.support:appcompat-v7:19.+'
     compile files('libs/ConnectionView.jar')
+    compile files('libs/ConnectionChecker.jar')
+    compile files('libs/Connection.jar')
 }

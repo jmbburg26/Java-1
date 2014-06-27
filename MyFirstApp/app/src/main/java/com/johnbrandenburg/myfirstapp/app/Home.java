@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.johnbrandenburg.connectivitymanager.app.MainActivity;
+import com.johnbrandenburg.internetconnection.Connection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -154,6 +154,7 @@ public class Home extends ActionBarActivity {
         }
     }
 
+    //Go to activity to check connection
     public void gotoActivity(View v){
         Intent intent = new Intent(this, ConnectionCheck.class);
         startActivity(intent);

@@ -17,6 +17,13 @@
     <string name="addressHint">Address</string>
     <string name="listText">All Contacts</string>
 
+    //Strings for connection messages
+    <string name="status">Status</string>
+    <string name="type">Type</string>
+    <string name="subtype">Subtype</string>
+    <string name="roaming">Roaming status</string>
+    <string name="menu_settings">Settings</string>
+
     <string-array name="contact_type">
         <item >Friend</item>
         <item >Family</item>
