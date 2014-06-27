@@ -6,6 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="contactText">Contact Information</string>
     <string name="conButtonText">Add Contact</string>
+    <string name="connection">Get Connection Status</string>
 
     <string name="check_web">Get Network Status</string>
 

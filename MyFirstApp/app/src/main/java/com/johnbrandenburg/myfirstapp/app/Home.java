@@ -15,12 +15,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.johnbrandenburg.connectivitymanager.app.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,6 @@ public class Home extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_layouts);
-
 
         contactName = (EditText) findViewById(R.id.contactName);
         contactEmail = (EditText) findViewById(R.id.contactEmail);
@@ -151,6 +152,11 @@ public class Home extends ActionBarActivity {
 
             return view;
         }
+    }
+
+    public void gotoActivity(View v){
+        Intent intent = new Intent(this, ConnectionCheck.class);
+        startActivity(intent);
     }
 
 
